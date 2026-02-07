@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #374151 transparent;
+  }
+
+  body {
+    @apply bg-gray-950 text-gray-100 font-sans antialiased;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-black/30;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-gray-800 rounded;
+  }
+
+  .gradient-overlay {
+    background: linear-gradient(to top, rgba(3, 7, 18, 1) 0%, rgba(3, 7, 18, 0.8) 30%, transparent 100%);
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800/60 transition-all duration-200;
+  }
+
+  .sidebar-link.active {
+    @apply text-white bg-gradient-to-r from-indigo-600/30 to-purple-600/20 border-l-2 border-indigo-500;
+  }
+}
