@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "claude-mem-search": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/opt/node22/lib/node_modules/claude-mem/plugin/scripts/mcp-server.cjs"]
+    }
+  }
+}
