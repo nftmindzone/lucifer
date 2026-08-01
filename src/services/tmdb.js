@@ -10,18 +10,26 @@ export const getBackdropUrl = (path) => getImageUrl(path, 'w1280');
 export const getPosterUrl = (path) => getImageUrl(path, 'w342');
 export const getProfileUrl = (path) => getImageUrl(path, 'w185');
 
+const isBearerToken = (apiKey) => apiKey.startsWith('eyJ');
+
 const request = async (endpoint, apiKey, params = {}) => {
   if (!apiKey) throw new Error('API key is required');
 
   const url = new URL(`${BASE_URL}${endpoint}`);
-  url.searchParams.set('api_key', apiKey);
+  if (!isBearerToken(apiKey)) {
+    url.searchParams.set('api_key', apiKey);
+  }
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined && value !== null) {
       url.searchParams.set(key, value);
     }
   });
 
-  const res = await fetch(url.toString());
+  const headers = isBearerToken(apiKey)
+    ? { Authorization: `Bearer ${apiKey}` }
+    : undefined;
+
+  const res = await fetch(url.toString(), headers ? { headers } : undefined);
   if (!res.ok) {
     if (res.status === 401) throw new Error('Invalid API key');
     throw new Error(`TMDB API error: ${res.status}`);
