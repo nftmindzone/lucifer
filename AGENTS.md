@@ -27,8 +27,9 @@ There is no test runner configured (no Vitest/Jest/Playwright in the repo).
 
 On first launch the app shows an API key gate. Without a valid key, trending/search/watchlist cannot be exercised.
 
-- Get a free v3 key: https://www.themoviedb.org/settings/api
-- Enter it in the UI, or set `TMDB_API_KEY` in the environment for automated browser tests (the app UI still expects manual entry unless you inject `localStorage`)
+- Get a free key: https://www.themoviedb.org/settings/api
+- Supports **v3 API keys** (32-char hex) and **v4 access tokens** (JWT starting with `eyJ`)
+- For automated E2E tests, set `TMDB_API_KEY` in the environment and enter it via the UI (or inject `localStorage` key `tmdb_api_key`)
 
 ### Dev server tips
 
